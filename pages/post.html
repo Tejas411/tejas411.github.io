@@ -49,7 +49,7 @@
 
         container.innerHTML = `
           <div class="post-header">
-            <a href="${BASE_PATH}pages/blog" class="post-header__back">← All Posts</a>
+            <a href="${BASE_PATH}pages/blog.html" class="post-header__back">← All Posts</a>
             <h1 class="post-header__title">${fm.title || slug}</h1>
             <div class="post-header__meta">
               ${fm.date ? `<span>${new Date(fm.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>` : ''}
