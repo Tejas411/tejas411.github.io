@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Tejas Kolhe</title>
+  <meta name="description" content="Learn more about Tejas Kolhe — background, skills, and experience.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <div id="navbar-container"></div>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <h1 class="page-header__title">About Me</h1>
+    </div>
+  </div>
+
+  <!-- About Content -->
+  <section class="section">
+    <div class="container">
+      <div class="about-full">
+        <img src="../assets/profile.jpg" alt="Tejas Kolhe" class="about-full__photo">
+        <div>
+          <div class="md-content" id="about-content">
+            <p>Loading...</p>
+          </div>
+          <div class="skill-tags" id="about-skills"></div>
+          <div class="about-full__social" id="about-social">
+            <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://twitter.com" target="_blank" rel="noopener">X / Twitter</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-container"></div>
+
+  <!-- Scripts -->
+  <script>const BASE_PATH = '../';</script>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="../js/markdown.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/nav.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const about = await loadMarkdown(BASE_PATH + 'content/about.md');
+        document.getElementById('about-content').innerHTML = about.html;
+
+        const skills = about.frontmatter.skills || [];
+        if (skills.length > 0) {
+          document.getElementById('about-skills').innerHTML = skills.map(s => `<span class="tag">${s}</span>`).join('');
+        }
+
+        const social = about.frontmatter.social;
+        if (social) {
+          const socialContainer = document.getElementById('about-social');
+          socialContainer.innerHTML = '';
+          if (social.github) socialContainer.innerHTML += `<a href="${social.github}" target="_blank" rel="noopener">GitHub</a>`;
+          if (social.linkedin) socialContainer.innerHTML += `<a href="${social.linkedin}" target="_blank" rel="noopener">LinkedIn</a>`;
+          if (social.twitter) socialContainer.innerHTML += `<a href="${social.twitter}" target="_blank" rel="noopener">X / Twitter</a>`;
+        }
+      } catch (e) {
+        console.error('Failed to load about page:', e);
+        document.getElementById('about-content').innerHTML = '<p>Failed to load content.</p>';
+      }
+    });
+  </script>
+
+</body>
+</html>

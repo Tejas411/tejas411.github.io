@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tejas Kolhe</title>
+  <meta name="description"
+    content="Personal portfolio of Tejas Kolhe — full-stack developer and designer. Explore projects, blog posts, and more.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <div id="navbar-container"></div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <p class="hero__greeting">Hello, I'm</p>
+      <h1 class="hero__name">Tejas Kolhe</h1>
+      <p class="hero__tagline">Full-stack developer & designer crafting clean, thoughtful digital experiences.</p>
+      <div class="hero__actions">
+        <a href="projects.html" class="btn btn--primary">View Projects</a>
+        <a href="contact.html" class="btn btn--outline">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview -->
+  <section class="section section--alt" id="about">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">About</h2>
+        <a href="about.html" class="section__cta">Read More →</a>
+      </div>
+      <div class="about-preview">
+        <div class="about-preview__bio" id="about-preview-content">
+          <p>Loading...</p>
+        </div>
+        <img src="../assets/profile.jpg" alt="Tejas Kolhe" class="about-preview__photo">
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Preview -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Featured Projects</h2>
+        <a href="projects.html" class="section__cta">View All Projects →</a>
+      </div>
+      <div class="filter-bar" id="home-project-tags"></div>
+      <div class="card-grid" id="projects-grid">
+        <p class="empty-state">Loading projects...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Preview -->
+  <section class="section section--alt" id="blog">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Latest Posts</h2>
+        <a href="blog.html" class="section__cta">View All Posts →</a>
+      </div>
+      <div class="card-grid" id="blog-grid">
+        <p class="empty-state">Loading posts...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resume Preview -->
+  <section class="section" id="resume">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Resume</h2>
+        <a href="resume.html" class="section__cta">View Full Resume →</a>
+      </div>
+      <p style="color: var(--color-text-secondary); margin-bottom: var(--space-lg);">
+        Full-stack developer with 5+ years of experience building web applications and design systems. Passionate about
+        clean code, accessibility, and user-centered design.
+      </p>
+      <a href="../assets/resume.pdf" class="btn btn--outline" download>Download PDF ↓</a>
+    </div>
+  </section>
+
+  <!-- Contact Preview -->
+  <section class="section section--alt" id="contact">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Get in Touch</h2>
+      </div>
+      <p style="color: var(--color-text-secondary); margin-bottom: var(--space-lg); max-width: 500px;">
+        Have a project in mind or just want to say hello? I'd love to hear from you.
+      </p>
+      <a href="contact.html" class="btn btn--primary">Contact Me →</a>
+    </div>
+  </section>
+
+  <div id="footer-container"></div>
+
+  <!-- Scripts -->
+  <script>const BASE_PATH = '../';</script>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="../js/markdown.js"></script>
+  <script src="../js/filters.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/nav.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      // --- About Preview ---
+      try {
+        const about = await loadMarkdown(BASE_PATH + 'content/about.md');
+        const aboutContainer = document.getElementById('about-preview-content');
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = about.html;
+        const firstParagraphs = tempDiv.querySelectorAll('p');
+        let previewText = '';
+        for (let i = 0; i < Math.min(2, firstParagraphs.length); i++) {
+          previewText += firstParagraphs[i].outerHTML;
+        }
+        aboutContainer.innerHTML = previewText || '<p>Welcome to my portfolio.</p>';
+      } catch (e) {
+        console.warn('Could not load about preview:', e);
+      }
+
+      // --- Projects Preview ---
+      try {
+        const projects = await loadAllFromManifest(BASE_PATH + 'content/projects/manifest.json', BASE_PATH + 'content/projects');
+        const featured = projects.filter(p => p.frontmatter.featured).slice(0, 4);
+        const display = featured.length > 0 ? featured : projects.slice(0, 4);
+        const allTags = extractAllTags(display);
+        const tagContainer = document.getElementById('home-project-tags');
+        let activeTags = [];
+
+        function renderProjects(items) {
+          const grid = document.getElementById('projects-grid');
+          if (items.length === 0) {
+            grid.innerHTML = '<p class="empty-state">No projects match the selected tags.</p>';
+            return;
+          }
+          grid.innerHTML = items.map(p => `
+            <div class="project-card">
+              ${p.frontmatter.thumbnail ? `<img src="${BASE_PATH}${p.frontmatter.thumbnail}" alt="${p.frontmatter.title}" class="project-card__thumbnail">` : ''}
+              <div class="project-card__body">
+                <h3 class="project-card__title"><a href="project.html?slug=${p.slug}">${p.frontmatter.title}</a></h3>
+                <p class="project-card__summary">${p.frontmatter.summary || ''}</p>
+                <div class="project-card__tags">
+                  ${(p.frontmatter.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
+                </div>
+                <div class="project-card__links">
+                  ${p.frontmatter.demo_url ? `<a href="${p.frontmatter.demo_url}" class="project-card__link" target="_blank" rel="noopener">Demo ↗</a>` : ''}
+                  ${p.frontmatter.repo_url ? `<a href="${p.frontmatter.repo_url}" class="project-card__link" target="_blank" rel="noopener">Repo ↗</a>` : ''}
+                </div>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        function updateProjects() {
+          const filtered = filterByTags(display, activeTags);
+          renderProjects(filtered);
+          renderFilterPills(allTags, tagContainer, activeTags, (tag) => {
+            if (tag === null) { activeTags = []; }
+            else if (activeTags.includes(tag)) { activeTags = activeTags.filter(t => t !== tag); }
+            else { activeTags.push(tag); }
+            updateProjects();
+          });
+        }
+        updateProjects();
+      } catch (e) {
+        console.warn('Could not load projects:', e);
+      }
+
+      // --- Blog Preview ---
+      try {
+        const posts = await loadAllFromManifest(BASE_PATH + 'content/blog/manifest.json', BASE_PATH + 'content/blog');
+        const latest = posts.slice(0, 4);
+        const grid = document.getElementById('blog-grid');
+        grid.innerHTML = latest.map(p => `
+          <div class="blog-card">
+            <div class="blog-card__meta">
+              <span>${new Date(p.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+              ${p.frontmatter.reading_time ? `<span>· ${p.frontmatter.reading_time}</span>` : ''}
+            </div>
+            <h3 class="blog-card__title"><a href="post.html?slug=${p.slug}">${p.frontmatter.title}</a></h3>
+            <p class="blog-card__summary">${p.frontmatter.summary || ''}</p>
+            <div class="blog-card__tags">
+              ${(p.frontmatter.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
+            </div>
+          </div>
+        `).join('');
+      } catch (e) {
+        console.warn('Could not load blog posts:', e);
+      }
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Tejas Kolhe</title>
+  <meta name="description" content="Blog posts by Tejas Kolhe on web development, design, and technology.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <div id="navbar-container"></div>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <h1 class="page-header__title">Blog</h1>
+      <p class="page-header__subtitle">Thoughts on development, design, and the web.</p>
+    </div>
+  </div>
+
+  <!-- Blog Listing -->
+  <section class="section">
+    <div class="container">
+      <div class="filter-bar" id="blog-filter-bar">
+        <span class="filter-bar__label">Filter:</span>
+        <div class="sort-toggle" id="blog-sort">
+          <span>Sort:</span>
+          <button class="active" data-sort="latest">Latest</button>
+          <button data-sort="oldest">Oldest</button>
+        </div>
+      </div>
+      <div class="card-grid" id="blog-grid">
+        <p class="empty-state">Loading posts...</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-container"></div>
+
+  <!-- Scripts -->
+  <script>const BASE_PATH = '../';</script>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="../js/markdown.js"></script>
+  <script src="../js/filters.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/nav.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const posts = await loadAllFromManifest(BASE_PATH + 'content/blog/manifest.json', BASE_PATH + 'content/blog');
+        const allTags = extractAllTags(posts);
+        let activeTags = getActiveTagsFromURL();
+        let sortOrder = 'latest';
+
+        function renderGrid(items) {
+          const grid = document.getElementById('blog-grid');
+          if (items.length === 0) {
+            grid.innerHTML = '<p class="empty-state">No posts match the selected tags. Try removing a filter.</p>';
+            return;
+          }
+          grid.innerHTML = items.map(p => `
+            <div class="blog-card">
+              <div class="blog-card__meta">
+                <span>${new Date(p.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                ${p.frontmatter.reading_time ? `<span>· ${p.frontmatter.reading_time}</span>` : ''}
+              </div>
+              <h3 class="blog-card__title"><a href="post.html?slug=${p.slug}">${p.frontmatter.title}</a></h3>
+              <p class="blog-card__summary">${p.frontmatter.summary || ''}</p>
+              <div class="blog-card__tags">
+                ${(p.frontmatter.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
+              </div>
+            </div>
+          `).join('');
+        }
+
+        function update() {
+          let filtered = filterByTags(posts, activeTags);
+          filtered = sortByDate(filtered, sortOrder);
+          renderGrid(filtered);
+          syncTagsToURL(activeTags);
+
+          const filterBar = document.getElementById('blog-filter-bar');
+          const label = filterBar.querySelector('.filter-bar__label');
+          const sortToggle = filterBar.querySelector('.sort-toggle');
+          filterBar.innerHTML = '';
+          filterBar.appendChild(label);
+
+          const pillsContainer = document.createElement('div');
+          pillsContainer.style.display = 'contents';
+          renderFilterPills(allTags, pillsContainer, activeTags, (tag) => {
+            if (tag === null) { activeTags = []; }
+            else if (activeTags.includes(tag)) { activeTags = activeTags.filter(t => t !== tag); }
+            else { activeTags.push(tag); }
+            update();
+          });
+          while (pillsContainer.firstChild) {
+            filterBar.appendChild(pillsContainer.firstChild);
+          }
+          filterBar.appendChild(sortToggle);
+
+          sortToggle.querySelectorAll('button').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.sort === sortOrder);
+          });
+        }
+
+        document.querySelectorAll('#blog-sort button').forEach(btn => {
+          btn.addEventListener('click', () => {
+            sortOrder = btn.dataset.sort;
+            update();
+          });
+        });
+
+        update();
+      } catch (e) {
+        console.error('Failed to load blog posts:', e);
+        document.getElementById('blog-grid').innerHTML = '<p class="empty-state">Failed to load posts.</p>';
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume — Tejas Kolhe</title>
+  <meta name="description" content="Resume of Tejas Kolhe — experience, education, skills, and certifications.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <div id="navbar-container"></div>
+
+  <!-- Resume Content -->
+  <section class="section">
+    <div class="container">
+      <div class="resume-header">
+        <h1 class="page-header__title">Resume</h1>
+        <div class="resume-actions">
+          <button class="btn btn--outline" onclick="window.print()">Print</button>
+          <a href="../assets/resume.pdf" class="btn btn--primary" download>Download PDF ↓</a>
+        </div>
+      </div>
+      <div class="md-content" id="resume-content">
+        <p>Loading resume...</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-container"></div>
+
+  <!-- Scripts -->
+  <script>const BASE_PATH = '../';</script>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="../js/markdown.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/nav.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const resume = await loadMarkdown(BASE_PATH + 'content/resume.md');
+        document.getElementById('resume-content').innerHTML = resume.html;
+      } catch (e) {
+        console.error('Failed to load resume:', e);
+        document.getElementById('resume-content').innerHTML = '<p>Failed to load resume content.</p>';
+      }
+    });
+  </script>
+
+</body>
+</html>

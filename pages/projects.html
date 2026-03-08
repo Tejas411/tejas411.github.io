@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Tejas Kolhe</title>
+  <meta name="description" content="Browse projects by Tejas Kolhe — web apps, design systems, open-source tools, and more.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <div id="navbar-container"></div>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <h1 class="page-header__title">Projects</h1>
+      <p class="page-header__subtitle">Things I've built and contributed to.</p>
+    </div>
+  </div>
+
+  <!-- Projects Listing -->
+  <section class="section">
+    <div class="container">
+      <div class="filter-bar" id="project-filter-bar">
+        <span class="filter-bar__label">Filter:</span>
+      </div>
+      <div class="card-grid" id="projects-grid">
+        <p class="empty-state">Loading projects...</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-container"></div>
+
+  <!-- Scripts -->
+  <script>const BASE_PATH = '../';</script>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="../js/markdown.js"></script>
+  <script src="../js/filters.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/nav.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const projects = await loadAllFromManifest(BASE_PATH + 'content/projects/manifest.json', BASE_PATH + 'content/projects');
+        const allTags = extractAllTags(projects);
+        let activeTags = getActiveTagsFromURL();
+
+        function renderGrid(items) {
+          const grid = document.getElementById('projects-grid');
+          if (items.length === 0) {
+            grid.innerHTML = '<p class="empty-state">No projects match the selected tags. Try removing a filter.</p>';
+            return;
+          }
+          grid.innerHTML = items.map(p => `
+            <div class="project-card">
+              ${p.frontmatter.thumbnail ? `<img src="${BASE_PATH}${p.frontmatter.thumbnail}" alt="${p.frontmatter.title}" class="project-card__thumbnail">` : ''}
+              <div class="project-card__body">
+                <h3 class="project-card__title"><a href="project.html?slug=${p.slug}">${p.frontmatter.title}</a></h3>
+                <p class="project-card__summary">${p.frontmatter.summary || ''}</p>
+                <div class="project-card__tags">
+                  ${(p.frontmatter.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
+                </div>
+                <div class="project-card__links">
+                  ${p.frontmatter.demo_url ? `<a href="${p.frontmatter.demo_url}" class="project-card__link" target="_blank" rel="noopener">Demo ↗</a>` : ''}
+                  ${p.frontmatter.repo_url ? `<a href="${p.frontmatter.repo_url}" class="project-card__link" target="_blank" rel="noopener">Repo ↗</a>` : ''}
+                </div>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        function update() {
+          const filtered = filterByTags(projects, activeTags);
+          renderGrid(filtered);
+          syncTagsToURL(activeTags);
+          renderFilterPills(allTags, document.getElementById('project-filter-bar'), activeTags, (tag) => {
+            if (tag === null) { activeTags = []; }
+            else if (activeTags.includes(tag)) { activeTags = activeTags.filter(t => t !== tag); }
+            else { activeTags.push(tag); }
+            update();
+          });
+        }
+        update();
+      } catch (e) {
+        console.error('Failed to load projects:', e);
+        document.getElementById('projects-grid').innerHTML = '<p class="empty-state">Failed to load projects.</p>';
+      }
+    });
+  </script>
+
+</body>
+</html>

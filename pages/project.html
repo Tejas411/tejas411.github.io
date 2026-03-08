@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project — Tejas Kolhe</title>
+  <meta name="description" content="Project details by Tejas Kolhe.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <div id="navbar-container"></div>
+
+  <!-- Project Detail -->
+  <section class="section">
+    <div class="container">
+      <div id="project-content">
+        <p>Loading project...</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-container"></div>
+
+  <!-- Scripts -->
+  <script>const BASE_PATH = '../';</script>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="../js/markdown.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/nav.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const slug = getQueryParam('slug');
+      const container = document.getElementById('project-content');
+
+      if (!slug) {
+        container.innerHTML = '<p>No project specified. <a href="projects.html">Browse all projects →</a></p>';
+        return;
+      }
+
+      try {
+        const project = await loadMarkdown(BASE_PATH + `content/projects/${slug}.md`);
+        const fm = project.frontmatter;
+        document.title = `${fm.title || slug} — Tejas Kolhe`;
+
+        container.innerHTML = `
+          <div class="post-header">
+            <a href="projects.html" class="post-header__back">← All Projects</a>
+            <h1 class="post-header__title">${fm.title || slug}</h1>
+            <div class="post-header__meta">
+              ${fm.date ? `<span>${new Date(fm.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>` : ''}
+            </div>
+            <div class="post-header__tags">
+              ${(fm.tags || []).map(t => `<a href="projects.html?tag=${t}" class="tag tag--clickable">${t}</a>`).join('')}
+            </div>
+            <div class="post-header__links">
+              ${fm.demo_url ? `<a href="${fm.demo_url}" class="btn btn--primary" target="_blank" rel="noopener">Live Demo ↗</a>` : ''}
+              ${fm.repo_url ? `<a href="${fm.repo_url}" class="btn btn--outline" target="_blank" rel="noopener">Source Code ↗</a>` : ''}
+            </div>
+          </div>
+          ${fm.thumbnail ? `<img src="${BASE_PATH}${fm.thumbnail}" alt="${fm.title}" style="width:100%;border-radius:var(--radius-md);margin-bottom:var(--space-2xl);">` : ''}
+          <div class="md-content">${project.html}</div>
+        `;
+      } catch (e) {
+        console.error('Failed to load project:', e);
+        container.innerHTML = '<p>Project not found. <a href="projects.html">Browse all projects →</a></p>';
+      }
+    });
+  </script>
+
+</body>
+</html>
