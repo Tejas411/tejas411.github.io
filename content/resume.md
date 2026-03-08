@@ -2,56 +2,109 @@
 title: Resume — Tejas Kolhe
 ---
 
+## Profile Summary
+Product builder with 8.5 yrs. of cross-functional experience in Product Management (4.5 yrs.), Product Analytics-Data science (2 yrs.) and Program Management (2 yrs.) in consumer tech & product based organizations.
+
+---
+
 ## Experience
 
-### Senior Frontend Engineer — Acme Corp
-**Jan 2022 – Present** · San Francisco, CA
+### Senior Product Manager — Info Edge (Shiksha.com)
+**May 2021 - Present** · Noida
 
-- Led the development of a design system used by 25+ engineers across 4 product teams, reducing UI inconsistencies by 60%
-- Architected a React component library with TypeScript, Storybook, and automated visual regression testing
-- Improved Core Web Vitals (LCP, CLS) by 40% through code splitting, lazy loading, and image optimization
-- Mentored 3 junior developers through code reviews, pair programming sessions, and weekly 1-on-1s
+**Generative AI**
+- Built an in-house multi-agent RAG-based automation system to extract and structure data from official external sources, enabling updates on 50k+ course pages improving efficiency by 10X & higher precision
+- Integrated inhouse tuned ShikshaGPT model on App, AI-bot to answer student queries; 85% +ve feedback
 
-### Full-Stack Developer — StartupXYZ
-**Jun 2019 – Dec 2021** · Remote
+**Mobile App User Growth**
+- Scaled consumer mobile App to 600K+ MAUs, driving ~20% of platform leads (revenue); up from ~2%
+- Developed notification engine with user journey based 8+ productized notif; boosting 25% DAU growth
+- Improved monetizable mobile verified users from 20% to 60% by optimizing registration funnel
+- Designed onboarding flow customized to course interests; improved week 1 user app retention by 5%
+- Optimized paid user acquisition on App, reducing cost per acq. by ~50%; Saving ~60L/yr. in marketing
 
-- Built and maintained a customer-facing SaaS dashboard serving 10,000+ monthly active users
-- Designed RESTful APIs with Node.js and Express, backed by PostgreSQL and Redis caching
-- Implemented CI/CD pipelines with GitHub Actions, reducing deployment time from 45 minutes to 8 minutes
-- Collaborated with product and design teams to ship features on a 2-week sprint cadence
+**Traffic & Community Growth**
+- Scaled traffic to ~400Mn+ visits/yr (3x in 3 yrs) by productizing content across 500K+ pages
+- Optimized page conversions by +30%; Boosted site registrations to 9M+/yr (4x in 3 years)
+- Scaled student reviews to 500K+ via referral campaigns with automated UPI payouts & communications
 
-### Junior Web Developer — Digital Agency Co
-**Aug 2017 – May 2019** · New York, NY
+**Personalization**
+- Drove client leads generation growth by 20% by building & improving college recommendation models
+- Launched personalized user feed of news & videos; incr. engagement by ~20% in avg. session duration
+- Built content notifications with AI generated engaging captions; 30% higher CTR, contributing 5% of DAUs
 
-- Developed responsive marketing websites and landing pages for Fortune 500 clients
-- Built interactive data visualizations using D3.js and vanilla JavaScript
-- Optimized page load times, achieving sub-2-second load times for high-traffic pages
+**Recognition**
+- Received 3 Info Edge annual merit awards and 3 Shiksha topper awards for high-impact contributions
+
+### Product Analytics Manager — Zomato
+**Jun 2017 - May 2019** · Gurgaon
+
+**Data Science**
+- Developed cart recommendation engine, increased 5% cart addition, led cross department collaboration
+- Designed rule engine and product flows of chatbot, drove 30% cost reduction in customer chat support
+- Built dynamic delivery pricing model, improved revenue by Rs. 1.2Cr/yr, logistics serviceabilility by 10%
+- Built fraud detection model used in delivery incentives payments system and customer segmentation
+
+**Customer Experience**
+- Led team of 8, improved customer satisfaction by 15%, optimized performance of 3K+ support agents
+- Reduced customer queries by 20% and the response time by 30%, redesigned post-order process flows
+
+**Strategic Initiatives**
+- Developed a predictive model for new user order and discount propensity, saved monthly INR 18L+
+- Built rider attrition prediction model with 80% accuracy; implemented proactive counselling process
+
+### Program Manager — Ola Cabs
+**Jul 2015 - Jun 2017** · Bangalore
+
+**Leadership**
+- Led team of 20+ to manage operations across 8 tier-III cities, achieved 40% quarterly revenue growth
+- Spearheaded launch of Ola rental and outstation in 50+ cities, achieved Rs. 8Cr+/month revenue
+
+**Business Impact**
+- Achieved 4X YoY booking growth in East region, improved 20% driver retention by targeted incentives
+- Managed car leasing operations & onboarded 400+ leased cars contributing Rs. 2.5Cr+/mt revenue
+
+**Recognition**
+- Received accelerated promotion (1/50+) in Ola from business analyst to manage P&L of 8 tier3 cities
 
 ---
 
 ## Education
 
-### B.S. Computer Science — University of California, Berkeley
-**2013 – 2017**
+### MBA — IIM Bangalore
+**2019 – 2021**
 
-- Relevant coursework: Data Structures, Algorithms, Human-Computer Interaction, Database Systems
-- Teaching assistant for CS 160 (User Interface Design)
+### B.Tech. + M.Tech. (Energy Sci. & Engineering) — IIT Bombay
+**2010 – 2015**
 
 ---
 
 ## Skills
 
-**Languages:** JavaScript, TypeScript, Python, HTML, CSS, SQL
-
-**Frameworks & Libraries:** React, Next.js, Node.js, Express, Tailwind CSS, D3.js
-
-**Tools & Platforms:** Git, GitHub Actions, Docker, AWS (S3, Lambda, CloudFront), Figma, Storybook
-
-**Practices:** Agile/Scrum, Test-Driven Development, CI/CD, Accessibility (WCAG 2.1), Performance Optimization
+**Core Skills:** Multi-agent RAG system, Prompt engineering, machine learning, Python, SQL, basic programming: React, Node.js
 
 ---
 
-## Certifications
+## Internship Experiences
 
-- **AWS Certified Cloud Practitioner** — Amazon Web Services, 2023
-- **Professional Scrum Master I (PSM I)** — Scrum.org, 2022
+**Apollo 24|7 (Product Management) — 2020**
+- Developed WhatsApp chatbot for cust. support in online consultation 300+ daily user
+
+**L.E.K. Consulting (Research Consultant) — 2020**
+- Client commercial Due diligence proposal on coffee chain mkt in South East Asia
+
+---
+
+## Awards and Recognitions
+- Awarded institute org. colour, highest Student award, 1/3 of 800+ for exemplary contribution as Institute Alumni Secretary, IITB’14
+- Authored poster accepted by EST international conference, Germany and scored CGPA 10/10 in Masters’ Thesis, IITB’15
+- Semi-finalist, 1/20 of 680+ teams from 30+ countries, international social venture competition by NUS, Singapore, IITB’15
+
+---
+
+## Interests and Activities
+
+**Endurance Sports & Mountaineering**
+- Completed 3 full marathons (PB 5:02 hrs), 15+ Half Marathons (PB 1:52 hrs), 12 hrs Swimming, '12-'25
+- Completed Everest Base Camp trek; summited altitude of 5300m+; trek of 130+ kms over 11 days, ‘21
+- Certified mountaineer, awarded 'A' grade, summited 15K+ ft and trained in rock climbing, IITB'11

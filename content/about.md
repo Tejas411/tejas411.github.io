@@ -1,24 +1,28 @@
 ---
-skills: [JavaScript, TypeScript, React, Node.js, Python, CSS, Figma, Git]
+skills: [Product Management, Generative AI, Multi-Agent Systems, RAG, Product Analytics, SQL, Python, Machine Learning, Personalization Systems, Growth Strategy, React, Node.js]
 social:
-  github: https://github.com
-  linkedin: https://linkedin.com
-  twitter: https://twitter.com
+  github: https://github.com/Tejas411
+  linkedin: https://www.linkedin.com/in/tejas-kolhe411
+  twitter: https://x.com/kolhe_tejas
 ---
 
-I'm a full-stack developer and designer based in San Francisco. I build clean, performant web applications and care deeply about user experience, accessibility, and well-crafted code.
+I'm a Product Manager building AI-powered consumer products. Currently a Senior Product Manager at Info Edge (Shiksha), previously at Zomato and Ola.
 
-With over five years of experience shipping products at startups and mid-size companies, I've worked across the stack — from designing component libraries in Figma to deploying containerized services in production.
+I specialize in product growth, personalization, recommendation systems, and generative AI, scaling products to hundreds of millions of users and driving measurable business impact.
+
+Recently, I’ve been building multi-agent AI systems and RAG pipelines to automate large-scale data workflows and power AI-driven product experiences.
 
 ## What I Do
 
-- **Frontend Development** — React, TypeScript, Next.js, and vanilla JS. I focus on performance, accessibility, and maintainable architecture.
-- **Backend & APIs** — Node.js, Express, Python, and PostgreSQL. I build robust APIs and data pipelines.
-- **Design Systems** — I've designed and maintained design token libraries, component kits, and documentation sites used by teams of 20+ engineers.
-- **Open Source** — I contribute to projects I use and maintain a handful of my own developer tools.
+- **Product Strategy & Growth** — I design and scale consumer products, driving user acquisition, engagement, and monetization. My work has helped scale platforms to 400M+ annual visits and millions of yearly registrations.
+- **AI & Automation** — I build AI-powered systems including multi-agent pipelines, RAG-based knowledge extraction, and AI assistants that automate product workflows and improve operational efficiency.
+- **Data & Personalization** — I use analytics, machine learning, and experimentation to build recommendation systems, optimize user journeys, and drive product decisions with data.
+- **Consumer Platforms** — I’ve worked across marketplaces, mobility, and education platforms at scale, building features used by millions of users.
 
 ## My Approach
 
-I believe great software starts with empathy — for the user and for your future self reading the code six months later. I prefer simplicity over cleverness, clear variable names over comments, and shipping over perfecting.
+I believe great products come from combining deep user understanding with strong data intuition. I focus on identifying high-leverage problems, simplifying complex systems, and shipping solutions that create measurable impact.
 
-When I'm not coding, you'll find me hiking Bay Area trails, sketching UI ideas in a notebook, or experimenting with generative art.
+I prefer experimentation over assumptions, clear product thinking over feature complexity, and fast iteration over long planning cycles.
+
+When I'm not building products, you'll find me running long-distance races, training in endurance sports, or exploring the mountains — including completing multiple marathons and trekking to Everest Base Camp.

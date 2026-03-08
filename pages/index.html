@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tejas Kolhe</title>
   <meta name="description"
-    content="Personal portfolio of Tejas Kolhe — full-stack developer and designer. Explore projects, blog posts, and more.">
+    content="Personal portfolio of Tejas Kolhe — full-stack product builder. Explore projects, blog posts, and more.">
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -19,7 +19,7 @@
     <div class="container">
       <p class="hero__greeting">Hello, I'm</p>
       <h1 class="hero__name">Tejas Kolhe</h1>
-      <p class="hero__tagline">Full-stack developer & designer crafting clean, thoughtful digital experiences.</p>
+      <p class="hero__tagline">Full-stack product builder crafting clean, thoughtful digital experiences.</p>
       <div class="hero__actions">
         <a href="projects.html" class="btn btn--primary">View Projects</a>
         <a href="contact.html" class="btn btn--outline">Get in Touch</a>
@@ -36,7 +36,12 @@
       </div>
       <div class="about-preview">
         <div class="about-preview__bio" id="about-preview-content">
-          <p>Loading...</p>
+          <p>I'm a Product Manager building AI-powered consumer products.<br>Currently at Info Edge, previously at
+            Zomato and Ola.</p>
+          <p>I specialize in product growth, personalization, recommendation systems, and generative AI, scaling
+            products to millions of users and driving measurable business impact.</p>
+          <p>Recently, I’ve been building multi-agent AI systems and RAG pipelines to automate data workflows and
+            improve product intelligence.</p>
         </div>
         <img src="../assets/profile.jpg" alt="Tejas Kolhe" class="about-preview__photo">
       </div>
@@ -78,8 +83,7 @@
         <a href="resume.html" class="section__cta">View Full Resume →</a>
       </div>
       <p style="color: var(--color-text-secondary); margin-bottom: var(--space-lg);">
-        Full-stack developer with 5+ years of experience building web applications and design systems. Passionate about
-        clean code, accessibility, and user-centered design.
+        AI-driven Senior Product Manager at Info Edge | Ex-Zomato, Ola | Edu-IIT Bombay & IIM Bangalore
       </p>
       <a href="../assets/resume.pdf" class="btn btn--outline" download>Download PDF ↓</a>
     </div>
@@ -110,21 +114,6 @@
   <script src="../js/nav.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
-      // --- About Preview ---
-      try {
-        const about = await loadMarkdown(BASE_PATH + 'content/about.md');
-        const aboutContainer = document.getElementById('about-preview-content');
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = about.html;
-        const firstParagraphs = tempDiv.querySelectorAll('p');
-        let previewText = '';
-        for (let i = 0; i < Math.min(2, firstParagraphs.length); i++) {
-          previewText += firstParagraphs[i].outerHTML;
-        }
-        aboutContainer.innerHTML = previewText || '<p>Welcome to my portfolio.</p>';
-      } catch (e) {
-        console.warn('Could not load about preview:', e);
-      }
 
       // --- Projects Preview ---
       try {
