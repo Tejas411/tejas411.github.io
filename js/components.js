@@ -11,13 +11,13 @@
     navbarContainer.innerHTML = `
       <nav class="navbar">
         <div class="container">
-          <a href="${basePathUrl}pages/index.html" class="navbar__logo">Tejas Kolhe</a>
+          <a href="${basePathUrl}" class="navbar__logo">Tejas Kolhe</a>
           <div class="navbar__links">
-            <a href="${basePathUrl}pages/about.html" class="navbar__link">About</a>
-            <a href="${basePathUrl}pages/projects.html" class="navbar__link">Projects</a>
-            <a href="${basePathUrl}pages/blog.html" class="navbar__link">Blog</a>
-            <a href="${basePathUrl}pages/resume.html" class="navbar__link">Resume</a>
-            <a href="${basePathUrl}pages/contact.html" class="navbar__link">Contact</a>
+            <a href="${basePathUrl}about" class="navbar__link">About</a>
+            <a href="${basePathUrl}projects" class="navbar__link">Projects</a>
+            <a href="${basePathUrl}blog" class="navbar__link">Blog</a>
+            <a href="${basePathUrl}resume" class="navbar__link">Resume</a>
+            <a href="${basePathUrl}contact" class="navbar__link">Contact</a>
           </div>
           <button class="navbar__hamburger" aria-label="Toggle navigation">
             <span></span><span></span><span></span>

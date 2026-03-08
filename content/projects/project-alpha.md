@@ -9,7 +9,7 @@ repo_url: "https://github.com/alexmorgan/taskflow"
 featured: true
 ---
 
-## Overview
+## Overview of product
 
 Taskflow is a lightweight project management tool designed for small teams who want the power of Trello without the bloat. It features real-time collaboration, keyboard-first navigation, and a clean interface built with React and TypeScript.
 

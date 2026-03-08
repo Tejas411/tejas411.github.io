@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Project — Tejas Kolhe</title>
   <meta name="description" content="Project details by Tejas Kolhe.">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -23,19 +23,19 @@
   <div id="footer-container"></div>
 
   <!-- Scripts -->
-  <script>const BASE_PATH = '../';</script>
+  <script>const BASE_PATH = './';</script>
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="../js/markdown.js"></script>
-  <script src="../js/components.js"></script>
-  <script src="../js/nav.js"></script>
+  <script src="js/markdown.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/nav.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
       const slug = getQueryParam('slug');
       const container = document.getElementById('project-content');
 
       if (!slug) {
-        container.innerHTML = '<p>No project specified. <a href="projects.html">Browse all projects →</a></p>';
+        container.innerHTML = '<p>No project specified. <a href="projects">Browse all projects →</a></p>';
         return;
       }
 
@@ -46,13 +46,13 @@
 
         container.innerHTML = `
           <div class="post-header">
-            <a href="${BASE_PATH}pages/projects.html" class="post-header__back">← All Projects</a>
+            <a href="${BASE_PATH}projects" class="post-header__back">← All Projects</a>
             <h1 class="post-header__title">${fm.title || slug}</h1>
             <div class="post-header__meta">
               ${fm.date ? `<span>${new Date(fm.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>` : ''}
             </div>
             <div class="post-header__tags">
-              ${(fm.tags || []).map(t => `<a href="${BASE_PATH}pages/projects?tag=${t}" class="tag tag--clickable">${t}</a>`).join('')}
+              ${(fm.tags || []).map(t => `<a href="${BASE_PATH}projects?tag=${t}" class="tag tag--clickable">${t}</a>`).join('')}
             </div>
             <div class="post-header__links">
               ${fm.demo_url ? `<a href="${fm.demo_url}" class="btn btn--primary" target="_blank" rel="noopener">Live Demo ↗</a>` : ''}
@@ -64,7 +64,7 @@
         `;
       } catch (e) {
         console.error('Failed to load project:', e);
-        container.innerHTML = '<p>Project not found. <a href="projects.html">Browse all projects →</a></p>';
+        container.innerHTML = '<p>Project not found. <a href="projects">Browse all projects →</a></p>';
       }
     });
   </script>
