@@ -49,14 +49,14 @@
 
         container.innerHTML = `
           <div class="post-header">
-            <a href="blog.html" class="post-header__back">← All Posts</a>
+            <a href="${BASE_PATH}pages/blog" class="post-header__back">← All Posts</a>
             <h1 class="post-header__title">${fm.title || slug}</h1>
             <div class="post-header__meta">
               ${fm.date ? `<span>${new Date(fm.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>` : ''}
               ${fm.reading_time ? `<span>· ${fm.reading_time}</span>` : ''}
             </div>
             <div class="post-header__tags">
-              ${(fm.tags || []).map(t => `<a href="blog.html?tag=${t}" class="tag tag--clickable">${t}</a>`).join('')}
+              ${(fm.tags || []).map(t => `<a href="${BASE_PATH}pages/blog?tag=${t}" class="tag tag--clickable">${t}</a>`).join('')}
             </div>
           </div>
           <div class="md-content">${post.html}</div>

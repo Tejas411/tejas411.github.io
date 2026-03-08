@@ -35,7 +35,7 @@
       const container = document.getElementById('project-content');
 
       if (!slug) {
-        container.innerHTML = '<p>No project specified. <a href="../../projects">Browse all projects →</a></p>';
+        container.innerHTML = '<p>No project specified. <a href="projects.html">Browse all projects →</a></p>';
         return;
       }
 
@@ -46,13 +46,13 @@
 
         container.innerHTML = `
           <div class="post-header">
-            <a href="../../projects" class="post-header__back">← All Projects</a>
+            <a href="${BASE_PATH}pages/projects" class="post-header__back">← All Projects</a>
             <h1 class="post-header__title">${fm.title || slug}</h1>
             <div class="post-header__meta">
               ${fm.date ? `<span>${new Date(fm.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>` : ''}
             </div>
             <div class="post-header__tags">
-              ${(fm.tags || []).map(t => `<a href="../../projects?tag=${t}" class="tag tag--clickable">${t}</a>`).join('')}
+              ${(fm.tags || []).map(t => `<a href="${BASE_PATH}pages/projects?tag=${t}" class="tag tag--clickable">${t}</a>`).join('')}
             </div>
             <div class="post-header__links">
               ${fm.demo_url ? `<a href="${fm.demo_url}" class="btn btn--primary" target="_blank" rel="noopener">Live Demo ↗</a>` : ''}
@@ -64,7 +64,7 @@
         `;
       } catch (e) {
         console.error('Failed to load project:', e);
-        container.innerHTML = '<p>Project not found. <a href="../../projects">Browse all projects →</a></p>';
+        container.innerHTML = '<p>Project not found. <a href="projects.html">Browse all projects →</a></p>';
       }
     });
   </script>

@@ -51,10 +51,6 @@ def generate_pages(manifest_path, template_name, out_dir, content_type):
         page_html = page_html.replace('src="../', 'src="../../../')
         page_html = page_html.replace("const BASE_PATH = '../';", "const BASE_PATH = '../../../';")
         
-        # Fix internal links to projects.html and blog.html
-        page_html = page_html.replace('href="projects.html', 'href="../../projects')
-        page_html = page_html.replace('href="blog.html', 'href="../../blog')
-        
         # Write the new file into a folder to remove the .html extension in URLs
         slug_dir = os.path.join(out_dir, slug)
         os.makedirs(slug_dir, exist_ok=True)
