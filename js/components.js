@@ -7,16 +7,17 @@
   // --- Navbar ---
   const navbarContainer = document.getElementById('navbar-container');
   if (navbarContainer) {
+    const basePathUrl = typeof BASE_PATH !== 'undefined' ? BASE_PATH : '';
     navbarContainer.innerHTML = `
       <nav class="navbar">
         <div class="container">
-          <a href="index.html" class="navbar__logo">Tejas Kolhe</a>
+          <a href="${basePathUrl}pages/index.html" class="navbar__logo">Tejas Kolhe</a>
           <div class="navbar__links">
-            <a href="about.html" class="navbar__link">About</a>
-            <a href="projects.html" class="navbar__link">Projects</a>
-            <a href="blog.html" class="navbar__link">Blog</a>
-            <a href="resume.html" class="navbar__link">Resume</a>
-            <a href="contact.html" class="navbar__link">Contact</a>
+            <a href="${basePathUrl}pages/about.html" class="navbar__link">About</a>
+            <a href="${basePathUrl}pages/projects.html" class="navbar__link">Projects</a>
+            <a href="${basePathUrl}pages/blog.html" class="navbar__link">Blog</a>
+            <a href="${basePathUrl}pages/resume.html" class="navbar__link">Resume</a>
+            <a href="${basePathUrl}pages/contact.html" class="navbar__link">Contact</a>
           </div>
           <button class="navbar__hamburger" aria-label="Toggle navigation">
             <span></span><span></span><span></span>

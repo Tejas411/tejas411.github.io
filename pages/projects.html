@@ -58,7 +58,7 @@
             <div class="project-card">
               ${p.frontmatter.thumbnail ? `<img src="${BASE_PATH}${p.frontmatter.thumbnail}" alt="${p.frontmatter.title}" class="project-card__thumbnail">` : ''}
               <div class="project-card__body">
-                <h3 class="project-card__title"><a href="project.html?slug=${p.slug}">${p.frontmatter.title}</a></h3>
+                <h3 class="project-card__title"><a href="project/${p.slug}.html">${p.frontmatter.title}</a></h3>
                 <p class="project-card__summary">${p.frontmatter.summary || ''}</p>
                 <div class="project-card__tags">
                   ${(p.frontmatter.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}

@@ -7,10 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelectorAll('.navbar__link');
 
   navLinks.forEach(link => {
-    const href = link.getAttribute('href');
+    // Get the base href (e.g. pages/about.html or just about.html) by stripping any ../
+    let href = link.getAttribute('href');
+    href = href.replace(/^(\.\.\/)+/, '').replace(/^(\.\/)+/, '');
+    
     // Match exact path or match if current path starts with the link href
     // For index/home, match only exact
-    if (href === 'index.html' || href === '/' || href === './') {
+    if (href === 'pages/index.html' || href === 'index.html' || href === '/' || href === './') {
       if (currentPath.endsWith('index.html') || currentPath.endsWith('/') || currentPath === '') {
         link.classList.add('navbar__link--active');
       }

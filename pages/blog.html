@@ -68,7 +68,7 @@
                 <span>${new Date(p.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
                 ${p.frontmatter.reading_time ? `<span>· ${p.frontmatter.reading_time}</span>` : ''}
               </div>
-              <h3 class="blog-card__title"><a href="post.html?slug=${p.slug}">${p.frontmatter.title}</a></h3>
+              <h3 class="blog-card__title"><a href="post/${p.slug}.html">${p.frontmatter.title}</a></h3>
               <p class="blog-card__summary">${p.frontmatter.summary || ''}</p>
               <div class="blog-card__tags">
                 ${(p.frontmatter.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
