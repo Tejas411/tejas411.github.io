@@ -40,21 +40,25 @@ def generate_pages(manifest_path, template_name, out_dir, content_type):
         print(f"Generating {content_type} page for: {slug}")
         
         # Replace the dynamic Javascript "getQueryParam('slug')" with a hardcoded slug
-        # This allows the existing javascript renderer (which fetches markdown and converts to HTML client-side)
-        # to still work, but without relying on URL parameters.
         page_html = template_html.replace(
             "const slug = getQueryParam('slug');",
             f"const slug = '{slug}';"
         )
 
-        # Fix paths since we are now one level deeper (e.g. from /pages/project.html to /pages/project/slug.html)
-        # We need to adjust standard relative paths up one more level
-        page_html = page_html.replace('href="../', 'href="../../')
-        page_html = page_html.replace('src="../', 'src="../../')
-        page_html = page_html.replace("const BASE_PATH = '../';", "const BASE_PATH = '../../';")
+        # Fix paths since we are now TWO levels deeper (e.g. from /pages/project.html to /pages/project/slug/index.html)
+        # We need to adjust standard relative paths up another level
+        page_html = page_html.replace('href="../', 'href="../../../')
+        page_html = page_html.replace('src="../', 'src="../../../')
+        page_html = page_html.replace("const BASE_PATH = '../';", "const BASE_PATH = '../../../';")
         
-        # Write the new file
-        out_path = os.path.join(out_dir, f"{slug}.html")
+        # Fix internal links to projects.html and blog.html that didn't have ../ initially
+        page_html = page_html.replace('href="projects.html', 'href="../../projects.html')
+        page_html = page_html.replace('href="blog.html', 'href="../../blog.html')
+        
+        # Write the new file into a folder to remove the .html extension in URLs
+        slug_dir = os.path.join(out_dir, slug)
+        os.makedirs(slug_dir, exist_ok=True)
+        out_path = os.path.join(slug_dir, "index.html")
         with open(out_path, 'w', encoding='utf-8') as f:
             f.write(page_html)
 
