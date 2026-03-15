@@ -51,14 +51,14 @@ if __name__ == '__main__':
     with socketserver.TCPServer((BIND_ADDRESS, PORT), CleanURLHandler) as httpd:
         print(f"Server running at http://{BIND_ADDRESS}:{PORT}/")
         print("Clean URLs enabled:")
-        print("  / → projects.html (default)")
-        print("  /about → about.html")
-        print("  /blog → blog.html")
-        print("  /projects → projects.html")
-        print("  /resume → resume.html")
-        print("  /contact → contact.html")
-        print("  /project?slug=name → project.html")
-        print("  /post?slug=name → post.html")
+        print("  / -> projects.html (default)")
+        print("  /about -> about.html")
+        print("  /blog -> blog.html")
+        print("  /projects -> projects.html")
+        print("  /resume -> resume.html")
+        print("  /contact -> contact.html")
+        print("  /project?slug=name -> project.html")
+        print("  /post?slug=name -> post.html")
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:

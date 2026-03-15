@@ -109,13 +109,23 @@ All shared UI lives in `js/components.js`. Edit once, and every page updates aut
 
 ## Running Locally
 
-Use any static file server. The easiest way:
+To support clean URLs (e.g., `/about` instead of `/about.html`), use the provided custom server script:
 
 ```bash
-python -m http.server 3000
+# Start the server
+python serve.py
 ```
 
-Then open `http://localhost:3000` (auto-redirects to `pages/index.html`).
+- **Stop server**: Press `Ctrl+C` in your terminal.
+- **Access site**: [http://localhost:8000](http://localhost:8000)
+
+If the port is busy, you can find and kill the process:
+```powershell
+# Find PID
+netstat -ano | findstr :8000
+# Kill process (replace <PID> with the number from the last column above)
+taskkill /F /PID <PID>
+```
 
 ## Tech Stack
 
